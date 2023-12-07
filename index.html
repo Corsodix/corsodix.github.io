@@ -14,15 +14,27 @@
     <!-- <script src="script.js"></script>     -->
     <script>
       const speech = new SpeechSynthesisUtterance();
+
       let voices = [];
+      let voiceSelect = document.querySelector("select");
+
       window.speechSynthesis.onvoiceschanged = () => {
         voices = window.speechSynthesis.getVoices();
-        console.log(voices[112]);
-        speech.voice = voices[112];
-        speech.text = "Text to speech";
-        window.speechSynthesis.speak(speech)
-
+        //speech.voice = voices[112]
+        voices.forEach((voice, i) => {
+          voiceSelect.options[i] = new Option(voice.name, i);
+          //voiceSelect.selectedIndex = 112
+        });
       };
+
+      voiceSelect.addEventListener("change", () => {
+        speech.voice = voices[voiceSelect.value];
+      });
+
+      document.querySelector("button").addEventListener("click", () => {
+        speech.text = document.querySelector("textarea").value;
+        window.speechSynthesis.speak(speech);
+      });
     </script>
   </body>
 </html>
