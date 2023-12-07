@@ -1,7 +1,28 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <textarea name="textarea" id="textarea" cols="30" rows="10"></textarea>
+    <div class="">
+      <select name="select" id="select"></select>
+    </div>
+    <button>Listen</button>
+    <!-- <script src="script.js"></script>     -->
+    <script>
+      const speech = new SpeechSynthesisUtterance();
+      let voices = [];
+      window.speechSynthesis.onvoiceschanged = () => {
+        voices = window.speechSynthesis.getVoices();
+        console.log(voices[112]);
+        speech.voice = voices[112];
+        speech.text = "Text to speech";
+        window.speechSynthesis.speak(speech)
+
+      };
+    </script>
+  </body>
 </html>
