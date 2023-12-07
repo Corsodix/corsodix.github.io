@@ -20,11 +20,13 @@
 
       window.speechSynthesis.onvoiceschanged = () => {
         voices = window.speechSynthesis.getVoices();
-        //speech.voice = voices[112]
-        voices.forEach((voice, i) => {
+        speech.voice = voices[112]
+        voiceSelect.options[0] = new Option(voices[112].name, 112);
+        speech.rate = 1.5
+/*         voices.forEach((voice, i) => {
           voiceSelect.options[i] = new Option(voice.name, i);
           //voiceSelect.selectedIndex = 112
-        });
+        }); */
       };
 
       voiceSelect.addEventListener("change", () => {
